@@ -1,10 +1,9 @@
 package br.com.jotabank.testes;
 
-import br.com.jotabank.Exceptions.SeguroException;
+import br.com.jotabank.exceptions.SeguroException;
 import br.com.jotabank.model.Endereco;
 import br.com.jotabank.model.SeguroVida;
 import br.com.jotabank.model.Titular;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

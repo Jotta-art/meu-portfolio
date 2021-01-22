@@ -1,6 +1,6 @@
 package br.com.jotabank.model;
 
-import br.com.jotabank.Exceptions.SeguroException;
+import br.com.jotabank.exceptions.SeguroException;
 
 public class SeguroVida {
     private Titular titular;
