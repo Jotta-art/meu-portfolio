@@ -15,17 +15,17 @@ public class TesteTentativasSenha {
 
         try {
             contaDoJoao.consultarSaldo(123);
-        } catch (SistemaException ex) {
+        } catch (SistemaException ignored) {
         }
 
         try {
             contaDoJoao.consultarSaldo(123);
-        } catch (SistemaException ex) {
+        } catch (SistemaException ignored) {
         }
 
         try {
             contaDoJoao.consultarSaldo(123);
-        } catch (SistemaException ex) {
+        } catch (SistemaException ignored) {
         }
 
         contaDoJoao.consultarSaldo(123);

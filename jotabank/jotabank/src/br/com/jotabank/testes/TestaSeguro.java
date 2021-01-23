@@ -13,16 +13,14 @@ public class TestaSeguro {
 
     Endereco enderecoDoJoao;
     Titular joao;
-    SeguroVida sv;
+    SeguroVida sv = new SeguroVida();
 
     @BeforeEach
     public void criaSeguro() {
         enderecoDoJoao = new Endereco("Rua adalgisa", 200, "0245678", "Jardim Nossa Senhora", "Itapevi");
         joao = new Titular("João Pedro", "12345678900", 18, enderecoDoJoao);
-        sv = new SeguroVida();
 
         sv.definirDependente("Inácio");
-
     }
 
     @Test
@@ -50,9 +48,7 @@ public class TestaSeguro {
     public void deveReceberUmaSeguroExceptionPorValorDePagamentoIncorreto() {
         criaSeguro();
 
-        assertThrows(SeguroException.class, () -> {
-            sv.pagarSeguro(100);
-        });
+        assertThrows(SeguroException.class, () -> sv.pagarSeguro(100));
     }
 
     @Test

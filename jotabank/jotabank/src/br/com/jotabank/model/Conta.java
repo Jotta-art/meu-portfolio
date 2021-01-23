@@ -1,12 +1,12 @@
 package br.com.jotabank.model;
 
+import br.com.jotabank.exceptions.SistemaException;
 import br.com.jotabank.validadores.ValidadorDeSaldo;
 import br.com.jotabank.validadores.ValidadorDeSenha;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * Classe que representa uma Conta no jotabank.
@@ -17,29 +17,17 @@ import java.util.Scanner;
 
 public abstract class Conta {
 
-    private static final Long serialVersionUID = 2L;
-
     private int saldo;
-    private final int agencia;
-    private final int numero;
     public Titular titular;
-    private final LocalDate dataDeCadastro;
-    private final LocalDate dataDeValidade;
-    private final int codigoDeSegurança;
 
     protected List<String> extrato = new ArrayList<>();
     protected int senha;
 
-    private ValidadorDeSenha validadorDeSenha = new ValidadorDeSenha();
-    private ValidadorDeSaldo validadorDeSaldo = new ValidadorDeSaldo();
+    private final ValidadorDeSenha validadorDeSenha = new ValidadorDeSenha();
+    private final ValidadorDeSaldo validadorDeSaldo = new ValidadorDeSaldo();
 
-    public Conta(int agencia, int numero, Titular titular, LocalDate dataDeCadastro, LocalDate dataDeValidade, int codigoDeSegurança, int senha) {
-        this.agencia = agencia;
-        this.numero = numero;
+    public Conta(int agencia, int numero, Titular titular, LocalDate dataDeCadastro, LocalDate dataDeValidade, int codigoDeSeguranca, int senha) {
         this.titular = titular;
-        this.dataDeCadastro = dataDeCadastro;
-        this.dataDeValidade = dataDeValidade;
-        this.codigoDeSegurança = codigoDeSegurança;
         this.senha = senha;
     }
 
@@ -69,19 +57,23 @@ public abstract class Conta {
         System.out.println("Depósito Realizado!");
     }
 
-    public void consultarSaldo(int tentativaDeSenha) {
+    public int consultarSaldo(int tentativaDeSenha) {
         if (validadorDeSenha.validaSenha(tentativaDeSenha, this.senha)) {
             System.out.println("Saldo = " + this.saldo);
+            return this.saldo;
         }
+        throw new SistemaException("Senha incorreta!");
     }
 
     public abstract void transferir(int valor, Conta conta, int senha);
 
-    public void consultarExtrato(int tentativaDeSenha) {
+    public boolean consultarExtrato(int tentativaDeSenha) {
         if (validadorDeSenha.validaSenha(tentativaDeSenha, this.senha)) {
             System.out.println();
             System.out.println("Extrato:");
             extrato.forEach(System.out::println);
+            return true;
         }
+        return false;
     }
 }

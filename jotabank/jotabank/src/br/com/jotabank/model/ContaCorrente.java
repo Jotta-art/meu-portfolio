@@ -13,19 +13,8 @@ import java.time.LocalDate;
 
 public class ContaCorrente extends Conta {
 
-    ValidadorDaAnuidade validadorDaAnuidade = new ValidadorDaAnuidade();
-
     public ContaCorrente(int agencia, int numero, Titular titular, LocalDate dataDeCadastro, LocalDate dataDeValidade, int codigoDeSegurança, int senha) {
         super(agencia, numero, titular, dataDeCadastro, dataDeValidade, codigoDeSegurança, senha);
-
-        for (int i = 0; i < 3; i++) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException ex) {
-                System.out.println("ERRO");
-            }
-        }
-        System.out.println("Cobrança: Por favor, pague a anuidade!");
     }
 
     @Override

@@ -1,5 +1,6 @@
 package br.com.jotabank.model;
 
+import br.com.jotabank.exceptions.ContaPoupancaException;
 import br.com.jotabank.exceptions.SistemaException;
 import br.com.jotabank.validadores.ValidadorDeSenha;
 
@@ -28,7 +29,7 @@ public class ContaPoupanca extends Conta {
 
     @Override
     public void transferir(int valor, Conta conta, int tentativaDeSenha) {
-        System.out.println("Esta conta não está habilitada para fazer esse tipo de operação!");
+        throw new ContaPoupancaException("Esta conta não está habilitada para fazer esse tipo de operação!");
     }
 
     public void guardar(int valor) {
@@ -36,9 +37,12 @@ public class ContaPoupanca extends Conta {
     }
 
 
-    public void consultarPoupanca(int tentativaDeSenha) {
-        if (validadorDeSenha.validaSenha(tentativaDeSenha, super.senha))
+    public boolean consultarPoupanca(int tentativaDeSenha) {
+        if (validadorDeSenha.validaSenha(tentativaDeSenha, super.senha)) {
             System.out.println("Valor na poupança = " + this.poupanca);
+            return true;
+        }
+        return false;
     }
 
 }
