@@ -1,7 +1,5 @@
 package br.com.jotabank.model;
 
-import br.com.jotabank.validadores.ValidadorDaAnuidade;
-
 import java.time.LocalDate;
 
 /**
@@ -13,8 +11,8 @@ import java.time.LocalDate;
 
 public class ContaCorrente extends Conta {
 
-    public ContaCorrente(int agencia, int numero, Titular titular, LocalDate dataDeCadastro, LocalDate dataDeValidade, int codigoDeSegurança, int senha) {
-        super(agencia, numero, titular, dataDeCadastro, dataDeValidade, codigoDeSegurança, senha);
+    public ContaCorrente(int agencia, int numero, Titular titular, LocalDate dataDeCadastro, LocalDate dataDeValidade, int codigoDeSeguranca, int senha) {
+        super(agencia, numero, titular, dataDeCadastro, dataDeValidade, codigoDeSeguranca, senha);
     }
 
     @Override

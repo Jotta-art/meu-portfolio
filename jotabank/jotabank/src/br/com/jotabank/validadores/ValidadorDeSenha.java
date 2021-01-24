@@ -1,5 +1,6 @@
 package br.com.jotabank.validadores;
 
+import br.com.jotabank.exceptions.SenhaException;
 import br.com.jotabank.exceptions.SistemaException;
 
 public class ValidadorDeSenha {
@@ -10,8 +11,9 @@ public class ValidadorDeSenha {
         if (numero != senha) {
             contador++;
             throw new SistemaException("Senha Incorreta! Tente novamente!");
-        } else if (contador == 4) {
-            throw new SistemaException("Quantidade de Tentativas Excedida! Cartão bloqueado!");
+        }
+        if (contador == 4) {
+            throw new SenhaException("Quantidade de Tentativas Excedida! Cartão bloqueado!");
         } else {
             return true;
         }
